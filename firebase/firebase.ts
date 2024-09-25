@@ -1,24 +1,11 @@
 import { initializeApp, getApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { GetServerSideProps } from 'next';
-import { loadSecrets } from './utils/loadSecrets';
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-export const getServerSideProps: GetServerSideProps = async () => {
-  // Load the secrets and set environment variables
-  loadSecrets();
 
-  // Retrieve the API key from process.env
-  const apiKey = process.env.API_KEY || '';
-
-  return {
-    props: {
-      apiKey,  // Pass it to the page as a prop
-    },
-  };
-};
 
 
 const firebaseConfig = {
