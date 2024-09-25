@@ -1,30 +1,25 @@
 import { initializeApp, getApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { GetServerSideProps } from 'next';
+import { loadSecrets } from './utils/loadSecrets';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const fs = require('fs');
-const yaml = require('js-yaml');
-const dotenv = require('dotenv');
+export const getServerSideProps: GetServerSideProps = async () => {
+  // Load the secrets and set environment variables
+  loadSecrets();
 
-// Function to load YAML and set environment variables
-function loadSecrets() {
-try {
-     // Read the secret.yml file
-    const secrets = yaml.load(fs.readFileSync('secret.yml', 'utf8'));
-    
-     // Set the API key as an environment variable
-    process.env.API_KEY = secrets.API_KEY;
+  // Retrieve the API key from process.env
+  const apiKey = process.env.API_KEY || '';
 
-    console.log('Secrets loaded and API key set to environment variables');
-} catch (error) {
-    console.error('Error loading secrets:', error);
-}
-}
+  return {
+    props: {
+      apiKey,  // Pass it to the page as a prop
+    },
+  };
+};
 
-// Call the function to load the secrets
-loadSecrets();
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,

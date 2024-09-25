@@ -3,6 +3,7 @@ import { getSession } from "next-auth/react";
 import Head from "next/head";
 import { motion } from "framer-motion";
 
+
 import Feed from "../components/Feed";
 import HomeHeader from "../components/HomeHeader";
 import ProfileSide from "../components/ProfileSide";
