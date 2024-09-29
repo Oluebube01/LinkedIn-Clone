@@ -8,7 +8,7 @@ import Feed from "../components/Feed";
 import HomeHeader from "../components/HomeHeader";
 import ProfileSide from "../components/ProfileSide";
 import RightHandSide from "../components/RightHandSide";
-import SignIn from "../components/auth/SignIn";
+import SignIn from "/api/auth/login";
 
 const inter = Inter({ subsets: ["latin"] });
 
